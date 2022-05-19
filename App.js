@@ -1,15 +1,19 @@
 import 'react-native-gesture-handler';
 import {View, Text} from 'react-native';
 import React from 'react';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Navigation from './navigation/index';
+import {Amplify} from 'aws-amplify';
+import awsconfig from './src/aws-exports';
+import {withAuthenticator} from 'aws-amplify-react-native';
+
+Amplify.configure(awsconfig);
 
 const App = () => {
   return (
-    <View>
-      <MaterialIcons name="shopping-basket" size={28} />
-      <Text style={{fontFamily: 'OpenSans-Bold'}}>Hello</Text>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
+      <Navigation />
     </View>
   );
 };
 
-export default App;
+export default withAuthenticator(App);
